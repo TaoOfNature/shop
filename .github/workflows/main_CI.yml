@@ -14,7 +14,14 @@ jobs:
       - uses: actions/checkout@v6
 
       - uses: subosito/flutter-action@v2.14.0
-
+      
+      - name: 缓存 Dart/Flutter 依赖 (pub-cache)
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.FLUTTER_ROOT }}/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-pub-
+          
       - name: Install dependencies
         run: flutter pub get
 
