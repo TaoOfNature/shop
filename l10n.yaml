@@ -1,0 +1,3 @@
+arb-dir: lib/locals 
+template-arb-file: local_en.arb
+output-dir: lib/gen
