@@ -16,9 +16,6 @@ jobs:
 
       - name: download flutter environment
         uses: subosito/flutter-action@v2.14.0
-
-      - name: 确认 PUB_CACHE 环境变量
-        run: echo ${{ env.PUB_CACHE }}
       
       - name: cache Flutter dependencies
         uses: actions/cache@v4
@@ -29,11 +26,6 @@ jobs:
           
       - name: Install dependencies
         run: flutter pub get
-        
-      - name: 检查缓存目录内容
-        # 列出 PUB_CACHE 目录下的文件，确认是否存在 packages
-        # 如果这里没有文件，说明 pub get 写入了其他地方
-        run: ls -al ${{ env.PUB_CACHE }}
 
       - name: Analyze project source
         run: flutter analyze
