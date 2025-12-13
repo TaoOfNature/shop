@@ -12,7 +12,7 @@ class LoginWidget extends StatelessWidget {
       body: Column(
         children: [
           InputWidget(labelText: AppLocalizations.of(context)!.labelTextPhone),
-          SizedBox(height: 20.0),
+          // SizedBox(height: 20.0),
           InputWidget(
             labelText: AppLocalizations.of(context)!.labelTextPassword,
           ),
