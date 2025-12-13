@@ -11,14 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - name: checkout code
+        uses: actions/checkout@v6
 
-      - uses: subosito/flutter-action@v2.14.0
+      - name: download flutter environment
+        uses: subosito/flutter-action@v2.14.0
       
-      - name: 缓存 Dart/Flutter 依赖 (pub-cache)
+      - name: cache Flutter dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ env.FLUTTER_ROOT }}/.pub-cache
+          path: ${{ env.PUB_CACHE }} 
           key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.lock') }}
           restore-keys: ${{ runner.os }}-pub-
           
