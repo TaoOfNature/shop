@@ -1,5 +1,8 @@
 {
   "@@locale": "en",
   "labelTextPhone": "please input phone number",
-  "labelTextPassword": "please input password"
+  "labelTextPassword": "please input password",
+  "login": "login",
+  "register": "register",
+  "forgetPassword": "forget password"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 import 'package:shop/gen/app_localizations.dart';
 import 'package:shop/pages/widgets.dart';
 
@@ -10,11 +11,48 @@ class LoginWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("login")),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InputWidget(labelText: AppLocalizations.of(context)!.labelTextPhone),
+          InputWidget(
+            labelText: AppLocalizations.of(context)!.labelTextPhone,
+            inputType: TextInputType.phone,
+            maxLength: 11,
+          ),
           // SizedBox(height: 20.0),
           InputWidget(
             labelText: AppLocalizations.of(context)!.labelTextPassword,
+            inputType: TextInputType.visiblePassword,
+            maxLength: 32,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                ),
+                child: Text(
+                  AppLocalizations.of(context)!.login,
+                  style: styleInput,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: Text(AppLocalizations.of(context)!.register),
+              ),
+              const Spacer(),
+              TextButton(
+                onPressed: () {},
+                child: Text(AppLocalizations.of(context)!.forgetPassword),
+              ),
+            ],
           ),
         ],
       ),
@@ -22,4 +60,9 @@ class LoginWidget extends StatelessWidget {
   }
 
   // Login widget implementation
+}
+
+@Preview()
+Widget getLoginWidget() {
+  return LoginWidget();
 }
