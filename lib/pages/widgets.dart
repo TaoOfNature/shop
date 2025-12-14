@@ -3,6 +3,7 @@ import 'package:flutter/widget_previews.dart';
 import 'package:logging/logging.dart';
 
 var styleInput = TextStyle(color: Colors.black, fontSize: 20);
+var log = Logger("input");
 
 class InputWidget extends StatefulWidget {
   final String labelText;
@@ -56,6 +57,7 @@ class _InputWidgetState extends State<InputWidget> {
                       onPressed: () {
                         setState(() {
                           obscureText = !obscureText;
+                          log.info("status: $obscureText");
                         });
                       },
                       icon: obscureText

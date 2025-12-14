@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:logging/logging.dart';
 import 'package:shop/gen/app_localizations.dart';
 import 'package:shop/pages/widgets.dart';
+
+var log = Logger("login");
 
 class LoginWidget extends StatelessWidget {
   const LoginWidget({super.key});
@@ -29,7 +32,9 @@ class LoginWidget extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  log.info("login");
+                },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 20),
                 ),
@@ -44,12 +49,16 @@ class LoginWidget extends StatelessWidget {
           Row(
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  log.info("register");
+                },
                 child: Text(AppLocalizations.of(context)!.register),
               ),
               const Spacer(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  log.info("forgot password");
+                },
                 child: Text(AppLocalizations.of(context)!.forgetPassword),
               ),
             ],

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:logging/logging.dart';
 import 'package:shop/pages/login.dart';
 import 'package:shop/gen/app_localizations.dart';
 
 void main() {
+  Logger.root.level = Level.ALL; // defaults to Level.INFO
+  Logger.root.onRecord.listen((record) {
+    debugPrint('${record.time}: ${record.level.name}: ${record.loggerName}: ${record.message}');
+  });
   runApp(MyApp());
 }
 
