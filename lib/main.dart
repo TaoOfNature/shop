@@ -12,6 +12,7 @@ void main() {
       '${record.time}: ${record.level.name}: ${record.loggerName}: ${record.message}',
     );
   });
+  
   runApp(MyApp());
 }
 

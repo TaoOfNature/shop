@@ -4,7 +4,7 @@ import 'package:logging/logging.dart';
 import 'package:shop/gen/app_localizations.dart';
 import 'package:shop/widgets/forms/forms.dart';
 
-var log = Logger("login");
+var _log = Logger("login");
 
 class LoginWidget extends StatelessWidget {
   const LoginWidget({super.key});
@@ -24,7 +24,9 @@ class LoginWidget extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  log.info("login");
+                  _log.info(
+                    "login ${_phoneController.text},${_passworkController.text}",
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 20),
@@ -41,14 +43,14 @@ class LoginWidget extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  log.info("register");
+                  _log.info("register");
                 },
                 child: Text(AppLocalizations.of(context)!.register),
               ),
               const Spacer(),
               TextButton(
                 onPressed: () {
-                  log.info("forgot password");
+                  _log.info("forgot password");
                 },
                 child: Text(AppLocalizations.of(context)!.forgetPassword),
               ),
@@ -68,10 +70,12 @@ Widget getLoginWidget() {
 }
 
 var styleInput = TextStyle(color: Colors.black, fontSize: 20);
+TextEditingController _phoneController = TextEditingController();
+TextEditingController _passworkController = TextEditingController();
 
 Widget _phoneWidget(BuildContext context) {
   return InputWidget(
-    controller: TextEditingController(),
+    controller: _phoneController,
     labelText: AppLocalizations.of(context)!.labelTextPhone,
     inputType: TextInputType.phone,
     maxLength: 11,
@@ -81,7 +85,7 @@ Widget _phoneWidget(BuildContext context) {
 
 Widget _passwordWidget(BuildContext context) {
   return InputWidget(
-    controller: TextEditingController(),
+    controller: _passworkController,
     labelText: AppLocalizations.of(context)!.labelTextPassword,
     inputType: TextInputType.visiblePassword,
     maxLength: 32,
