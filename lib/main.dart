@@ -8,7 +8,9 @@ import 'package:shop/gen/app_localizations.dart';
 void main() {
   Logger.root.level = Level.ALL; // defaults to Level.INFO
   Logger.root.onRecord.listen((record) {
-    debugPrint('${record.time}: ${record.level.name}: ${record.loggerName}: ${record.message}');
+    debugPrint(
+      '${record.time}: ${record.level.name}: ${record.loggerName}: ${record.message}',
+    );
   });
   runApp(MyApp());
 }
@@ -30,7 +32,9 @@ class MyApp extends StatelessWidget {
       title: 'Namer App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 9, 108, 146),
+        ),
       ),
       home: LoginWidget(),
     );
