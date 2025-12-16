@@ -44,3 +44,22 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# 忽略所有 Pods 目录
+ios/Pods/
+macos/Pods/
+
+# 忽略 Xcode 工作区本地数据
+ios/.symlinks/
+ios/Runner.xcworkspace/contents.xcworkspacedata
+macos/Runner.xcworkspace/contents.xcworkspacedata
+
+# 忽略用户特定的 Scheme 配置（可选，除非你需要共享）
+ios/Runner.xcodeproj/xcuserdata/
+macos/Runner.xcodeproj/xcuserdata/
+
+# 忽略所有 Swift/Objective-C 模块缓存
+ios/.symlinks/
+
+# 忽略 macOS 系统生成的文件
+**/.DS_Store
