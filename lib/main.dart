@@ -3,8 +3,7 @@ import 'package:flutter/widget_previews.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logging/logging.dart';
-import 'package:shop/domain/usecase/login_usecase.dart';
-import 'package:shop/model/repositories/login_repository_impl.dart';
+import 'package:shop/injection_container.dart';
 import 'package:shop/presentation/bloc/login/login_bloc.dart';
 import 'package:shop/presentation/pages/login.dart';
 import 'package:shop/gen/app_localizations.dart';
@@ -16,7 +15,7 @@ void main() {
       '${record.time}: ${record.level.name}: ${record.loggerName}: ${record.message}',
     );
   });
-
+  init();
   runApp(MyApp());
 }
 
@@ -29,11 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(
-          create: (BuildContext context) {
-            final repository = LoginRepositoryImpl();
-            final useCase = LoginUsecase(repository);
-            return LoginBloc(useCase);
-          },
+          create: (BuildContext context) => getIt<LoginBloc>(),
         ),
       ],
       child: MaterialApp(
