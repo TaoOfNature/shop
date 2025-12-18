@@ -1,5 +1,5 @@
-import 'package:shop/domain/entities/user.dart';
+import 'package:shop/domain/entities/user_data.dart';
 
 abstract class LoginRepository {
-  Future<User> login(String phone, String password);
+  Future<UserData> login(String phone, String password);
 }

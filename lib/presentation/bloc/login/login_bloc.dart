@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final user = await loginUsecase.login(event.username, event.password);
       // user?.
       // --- 第三步：如果上面那行没报错，说明成功了 ---
-      emit(LoginSuccess(user!));
+      emit(LoginSuccess(user));
     } catch (e) {
       // --- 第四步：如果 try 块报错了，捕获异常，发出失败状态 ---
       emit(LoginFailure(e.toString()));
