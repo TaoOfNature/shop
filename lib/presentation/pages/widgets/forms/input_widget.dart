@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/widgets/forms/input_config.dart';
+import 'package:shop/presentation/pages/widgets/forms/input_config.dart';
 
 class InputWidget extends StatefulWidget {
   // --- 核心属性（必须） ---
@@ -36,6 +36,12 @@ class _InputWidgetState extends State<InputWidget> {
   void initState() {
     super.initState();
     obscureText = widget.inputType == TextInputType.visiblePassword;
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
   }
 
   @override

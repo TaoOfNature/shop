@@ -65,3 +65,4 @@ ios/.symlinks/
 **/.DS_Store
 
 *.g.dart
+*.freezed.dart

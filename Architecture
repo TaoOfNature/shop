@@ -1,0 +1,35 @@
+lib/
+├── main.dart                   # 应用入口，初始化 DI 等
+├── injection_container.dart    # 依赖注入 (GetIt) 配置
+├── core/                       # 核心通用库
+│   ├── error/                  # 异常处理 (Failures, Exceptions)
+│   ├── usecases/               # UseCase 基类定义
+│   └── util/                   # 通用工具类
+│
+├── domain/                     # 领域层 (核心业务)
+│   ├── entities/               # 核心对象
+│   │   └── user.dart           # @freezed 用户实体
+│   ├── repositories/           # 仓库接口
+│   │   └── auth_repository.dart # 定义登录/登出抽象接口
+│   └── usecases/               # 具体业务逻辑
+│       └── login_usecase.dart  # 登录逻辑入口
+│
+├── data/                       # 数据层 (具体实现)
+│   ├── datasources/            # 数据源
+│   │   ├── auth_remote_data_source.dart # API 调用接口
+│   │   └── auth_remote_data_source_impl.dart # Dio 实现
+│   ├── models/                 # 传输对象 (DTOs)
+│   │   └── user_model.dart     # @freezed + json_serializable
+│   └── repositories/           # 仓库实现
+│       └── auth_repository_impl.dart # 实现 domain 层的接口
+│
+└── presentation/               # 展示层 (UI)
+    ├── pages/                  # 页面
+    │   └── login_page.dart     # 登录 UI
+    ├── widgets/                # 局部 Widget
+    │   └── login_form.dart
+    └── bloc/                   # BLoC (ViewModel/Presenter)
+        └── login/
+            ├── login_bloc.dart # 业务状态中转
+            ├── login_event.dart # @freezed 登录事件
+            └── login_state.dart # @freezed 登录状态

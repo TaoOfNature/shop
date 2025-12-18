@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logging/logging.dart';
-import 'package:shop/pages/login.dart';
+import 'package:shop/domain/usecase/login_usecase.dart';
+import 'package:shop/model/repositories/login_repository_impl.dart';
+import 'package:shop/presentation/bloc/login/login_bloc.dart';
+import 'package:shop/presentation/pages/login.dart';
 import 'package:shop/gen/app_localizations.dart';
 
 void main() {
@@ -12,7 +16,7 @@ void main() {
       '${record.time}: ${record.level.name}: ${record.loggerName}: ${record.message}',
     );
   });
-  
+
   runApp(MyApp());
 }
 
@@ -22,22 +26,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        AppLocalizations.delegate,
-      ],
-      title: 'Namer App',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 9, 108, 146),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(
+          create: (BuildContext context) {
+            final repository = LoginRepositoryImpl();
+            final useCase = LoginUsecase(repository);
+            return LoginBloc(useCase);
+          },
         ),
+      ],
+      child: MaterialApp(
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          AppLocalizations.delegate,
+        ],
+        title: 'Namer App',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 9, 108, 146),
+          ),
+        ),
+        home: LoginWidget(),
       ),
-      home: LoginWidget(),
     );
   }
 }
