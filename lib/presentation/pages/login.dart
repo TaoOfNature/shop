@@ -6,7 +6,7 @@ import 'package:shop/gen/app_localizations.dart';
 import 'package:shop/presentation/bloc/login/login_bloc.dart';
 import 'package:shop/presentation/bloc/login/login_event.dart';
 import 'package:shop/presentation/bloc/login/login_state.dart';
-import 'package:shop/presentation/pages/widgets/forms/forms.dart';
+import 'package:shop/presentation/widgets/forms/forms.dart';
 
 var _log = Logger("login");
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/presentation/pages/widgets/forms/input_config.dart';
+import 'package:shop/presentation/widgets/forms/input_config.dart';
 
 class InputWidget extends StatefulWidget {
   // --- 核心属性（必须） ---
