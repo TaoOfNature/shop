@@ -25,6 +25,7 @@ dependencies:
   crypto: ^3.0.3
   shared_preferences: ^2.5.4
   freezed_annotation: ^3.1.0
+  drift: ^2.30.0
 
   cupertino_icons: ^1.0.8
 
@@ -43,3 +44,5 @@ dependency_overrides:
 flutter:
   uses-material-design: true
   generate: true
+  assets: 
+    - assets
