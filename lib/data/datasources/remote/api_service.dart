@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:shop/data/models/base_response.dart';
-import 'package:shop/domain/entities/user_data.dart';
+import 'package:shop/data/models/user_model.dart';
 
 part 'api_service.g.dart';
 
@@ -10,7 +10,7 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String? baseUrl}) = _ApiService;
 
   @POST("/auth/login")
-  Future<BaseResponse<UserData>> login(
+  Future<BaseResponse<UserModel>> login(
     @Field("phone") String phone,
     @Field("password") String password,
   );

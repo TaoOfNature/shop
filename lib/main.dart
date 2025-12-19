@@ -8,9 +8,9 @@ import 'package:shop/presentation/bloc/login/login_bloc.dart';
 import 'package:shop/presentation/pages/login.dart';
 import 'package:shop/gen/app_localizations.dart';
 
-void main() {
+void main() async {
   AppLogger.init();
-  init();
+  await init();
   runApp(MyApp());
 }
 

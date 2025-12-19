@@ -28,10 +28,10 @@ class AppImage extends StatelessWidget {
       width: width,
       height: height,
       fit: fit,
-      placeholder: (_, __) =>
+      placeholder: (_, _) =>
           placeholder ??
           const Center(child: CircularProgressIndicator(strokeWidth: 2)),
-      errorWidget: (_, __, ___) =>
+      errorWidget: (_, _, _) =>
           errorWidget ??
           const Icon(Icons.broken_image),
     );

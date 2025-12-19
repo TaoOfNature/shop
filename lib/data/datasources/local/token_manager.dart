@@ -1,34 +1,26 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop/data/datasources/local/local_storage.dart';
 
 class TokenManager {
   static const String _tokenKey = 'user_token';
 
-  static final TokenManager _instance = TokenManager._internal();
-  factory TokenManager() => _instance;
-  TokenManager._internal();
+  final LocalStorage _storage;
 
-  SharedPreferences? _prefs;
-
-  Future<void> init() async {
-    _prefs ??= await SharedPreferences.getInstance();
-  }
+  // 这里的核心：通过构造函数注入 LocalStorage
+  TokenManager(this._storage);
 
   /// 保存 Token 和用户信息
   Future<bool> saveToken(String token) async {
-    await init();
-    return await _prefs!.setString(_tokenKey, token);
+    return await _storage.setString(_tokenKey, token);
   }
 
   /// 获取 Token
   Future<String?> getToken() async {
-    await init();
-    return _prefs!.getString(_tokenKey);
+    return _storage.getString(_tokenKey);
   }
 
   /// 清除 Token 和用户信息
   Future<void> clearToken() async {
-    await init();
-    await _prefs!.remove(_tokenKey);
+    await _storage.remove(_tokenKey);
   }
 
   /// 检查是否已登录

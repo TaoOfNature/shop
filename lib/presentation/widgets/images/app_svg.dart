@@ -45,7 +45,7 @@ class AppSvg extends StatelessWidget {
                 child: CircularProgressIndicator(strokeWidth: 2),
               ),
             ),
-        errorBuilder: (_, __, ___) =>
+        errorBuilder: (_, _, _) =>
             errorWidget ??
             const Icon(
               Icons.broken_image_outlined,
