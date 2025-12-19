@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop/common/network/interceptors/auth_interceptor.dart';
-import 'package:shop/common/network/interceptors/error_interceptor.dart';
 import 'package:shop/data/datasources/local/local_storage.dart';
 import 'package:shop/data/datasources/local/token_manager.dart';
 import 'package:shop/data/datasources/remote/api_service.dart';
@@ -28,8 +27,7 @@ Future<void> init() async {
       ),
     );
     dio.interceptors.addAll([
-      AuthInterceptor(getIt<TokenManager>()), // 自动从 getIt 拿
-      ErrorInterceptor(),
+      AuthInterceptor(getIt<TokenManager>()),
       LogInterceptor(responseBody: true),
     ]);
     return dio;

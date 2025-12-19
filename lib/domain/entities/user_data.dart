@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_data.freezed.dart';
 
-@Freezed(genericArgumentFactories: true)
+@Freezed()
 sealed class UserData with _$UserData {
   const factory UserData({
     required String token,

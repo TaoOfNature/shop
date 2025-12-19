@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shop/common/di/injection_container.dart';
+import 'package:shop/common/di/injection_container.dart' as di;
 import 'package:shop/common/utils/app_logger.dart';
 import 'package:shop/presentation/bloc/login/login_bloc.dart';
 import 'package:shop/presentation/pages/login.dart';
 import 'package:shop/gen/app_localizations.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   AppLogger.init();
-  await init();
+  await di.init();
   runApp(MyApp());
 }
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(
-          create: (BuildContext context) => getIt<LoginBloc>(),
+          create: (BuildContext context) => di.getIt<LoginBloc>(),
         ),
       ],
       child: MaterialApp(

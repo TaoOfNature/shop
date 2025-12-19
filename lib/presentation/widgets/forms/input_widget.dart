@@ -39,12 +39,6 @@ class _InputWidgetState extends State<InputWidget> {
   }
 
   @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     // 1. 使用 FormField 代替裸露的 TextField，以便使用 validator
     return Padding(

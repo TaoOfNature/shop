@@ -11,24 +11,29 @@ mixin RepositoryHelper {
       // 1. 发起请求
       final response = await call();
 
-      // 2. 这里的逻辑就在 Data 层把 BaseResponse 消化掉
+      // 如果走到这里，说明 JSON 解析成功
       if (response.code == 200) {
-        if (response.data != null) {
-          // 成功：拆箱 -> 转换 -> 包装进 Success
-          return Success(mapToEntity(response.data!));
-        } else {
-          return const Failure("服务器返回数据为空");
-        }
-      } else {
-        // 业务失败 (例如 code 401 500 等)
-        return Failure(response.message, code: response.code);
+        final data = response.data;
+        return data != null
+            ? Success(mapToEntity(data))
+            : const Failure("数据为空");
       }
+      return Failure(response.message, code: response.code);
     } on DioException catch (e) {
-      // 3. 拦截器没抛异常，但 Dio 的网络错误(断网/超时)依然会进这里
-      return Failure(_handleDioError(e));
+      // ✅ 关键：处理类似 {"msg": "Invalid request"} 的非标准错误
+      String errorMessage = _handleDioError(e);
+
+      if (e.response?.data != null) {
+        final data = e.response?.data;
+        if (data is Map) {
+          // 兼容后端的各种命名：msg, message, error...
+          errorMessage =
+              data['msg'] ?? data['message'] ?? data['error'] ?? errorMessage;
+        }
+      }
+      return Failure(errorMessage, code: e.response?.statusCode);
     } catch (e) {
-      // 4. 解析错误或其他代码错误
-      return Failure("程序解析异常: $e");
+      return Failure("解析异常: $e");
     }
   }
 
