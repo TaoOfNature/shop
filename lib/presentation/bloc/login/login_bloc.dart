@@ -9,13 +9,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   // ✅ 1. 初始状态改为 LoginState.initial()
   LoginBloc(this.loginUsecase) : super(const LoginState.initial()) {
-    on<LoginButtonPressed>((event, emit) async {
-      emit(const LoginState.loading());
-      final result = await loginUsecase.login(event.username, event.password);
-      emit(switch (result) {
-        Success(data: final user) => LoginState.success(user),
-        Failure(message: final msg) => LoginState.failure(msg),
-      });
+    on<LoginEvent>((event, emit) async {
+      // ✅ 使用 map 处理所有可能的事件
+      await event.map(
+        // 1. 处理登录点击
+        loginPressed: (e) async {
+          emit(const LoginState.loading());
+          final result = await loginUsecase.login(e.username, e.password);
+          emit(switch (result) {
+            Success(data: final user) => LoginState.success(user),
+            Failure(message: final msg) => LoginState.failure(msg),
+          });
+        },
+
+        // 2. 假设以后添加：点击了发送验证码
+        // sendCodePressed: (e) async {
+        //   // 处理发送验证码逻辑...
+        // },
+
+        // 3. 假设以后添加：点击了登出
+        // logoutRequested: (e) async {
+        //   emit(const LoginState.initial());
+        // },
+      );
     });
   }
 }
