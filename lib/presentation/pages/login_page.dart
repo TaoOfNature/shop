@@ -10,14 +10,14 @@ import 'package:shop/presentation/widgets/forms/forms.dart';
 
 var _log = Logger("login");
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginPageState extends State<LoginPage> {
   late final TextEditingController _phoneController;
   late final TextEditingController _passwordController;
 
@@ -88,7 +88,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 var password = _passwordController.text;
                 // 触发 Bloc 事件
                 context.read<LoginBloc>().add(
-                  LoginButtonPressed(phone, password),
+                  LoginEvent.loginPressed(username: phone, password: password),
                 );
                 _log.info("login $phone,$password");
               },
@@ -145,5 +145,5 @@ class _LoginWidgetState extends State<LoginWidget> {
 
 @Preview(name: "login")
 Widget getLoginWidget() {
-  return LoginWidget();
+  return LoginPage();
 }
