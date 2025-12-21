@@ -5,8 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shop/common/di/injection_container.dart' as di;
 import 'package:shop/common/utils/app_logger.dart';
 import 'package:shop/presentation/bloc/login/login_bloc.dart';
-import 'package:shop/presentation/pages/login_page.dart';
 import 'package:shop/gen/app_localizations.dart';
+import 'package:shop/presentation/pages/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 9, 108, 146),
           ),
         ),
-        home: LoginPage(),
+        home: MainPage(),
       ),
     );
   }

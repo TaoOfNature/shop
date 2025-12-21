@@ -4,5 +4,9 @@
   "labelTextPassword": "please input password",
   "login": "login",
   "register": "register",
-  "forgetPassword": "forget password"
+  "forgetPassword": "forget password",
+  "home": "Home",
+  "video": "Videos",
+  "cart": "Cart",
+  "mine": "Me"
 }
