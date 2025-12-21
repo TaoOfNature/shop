@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shop/gen/app_localizations.dart';
+import 'package:shop/presentation/pages/cart_page.dart';
+import 'package:shop/presentation/pages/home_page.dart';
+import 'package:shop/presentation/pages/mine_page.dart';
+import 'package:shop/presentation/pages/video_page.dart';
+import 'package:shop/presentation/widgets/lazy_indexed_stack.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -13,9 +18,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
+      body: LazyIndexedStack(
         index: _currentIndex,
-        children: [Placeholder(), Placeholder(), Placeholder(), Placeholder()],
+        children: [HomePage(), VideoPage(), CartPage(), MinePage()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
