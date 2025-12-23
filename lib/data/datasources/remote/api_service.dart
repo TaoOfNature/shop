@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:shop/data/models/banner_model.dart';
 import 'package:shop/data/models/base_response.dart';
 import 'package:shop/data/models/user_model.dart';
 
@@ -14,4 +15,7 @@ abstract class ApiService {
     @Field("phone") String phone,
     @Field("password") String password,
   );
+
+  @GET("/banner")
+  Future<BaseResponse<List<BannerModel>>> getBanner();
 }

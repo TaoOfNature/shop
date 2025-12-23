@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shop/common/di/injection_container.dart' as di;
 import 'package:shop/common/utils/app_logger.dart';
-import 'package:shop/presentation/bloc/login/login_bloc.dart';
+import 'package:shop/presentation/bloc/home/home_bloc.dart';
 import 'package:shop/gen/app_localizations.dart';
 import 'package:shop/presentation/pages/main_page.dart';
 
@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<LoginBloc>(
-          create: (BuildContext context) => di.getIt<LoginBloc>(),
+        BlocProvider<HomeBloc>(
+          create: (BuildContext context) => di.getIt<HomeBloc>(),
         ),
       ],
       child: MaterialApp(

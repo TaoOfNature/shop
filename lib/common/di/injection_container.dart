@@ -5,10 +5,15 @@ import 'package:shop/common/network/interceptors/auth_interceptor.dart';
 import 'package:shop/data/datasources/local/local_storage.dart';
 import 'package:shop/data/datasources/local/token_manager.dart';
 import 'package:shop/data/datasources/remote/api_service.dart';
+import 'package:shop/data/repositories/home_repository_impl.dart';
+import 'package:shop/domain/repositories/home_repository.dart';
 import 'package:shop/domain/repositories/login_repository.dart';
+import 'package:shop/domain/usecase/home_usecase.dart';
+import 'package:shop/domain/usecase/impl/home_usecase_impl.dart';
 import 'package:shop/domain/usecase/impl/login_usecase_impl.dart';
 import 'package:shop/domain/usecase/login_usecase.dart';
 import 'package:shop/data/repositories/login_repository_impl.dart';
+import 'package:shop/presentation/bloc/home/home_bloc.dart';
 import 'package:shop/presentation/bloc/login/login_bloc.dart';
 
 var getIt = GetIt.I;
@@ -39,4 +44,10 @@ Future<void> init() async {
   );
   getIt.registerLazySingleton<LoginUsecase>(() => LoginUsecaseImpl(getIt()));
   getIt.registerFactory<LoginBloc>(() => LoginBloc(getIt()));
+
+  getIt.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(getIt()),
+  );
+  getIt.registerLazySingleton<HomeUsecase>(() => HomeUsecaseImpl(getIt()));
+  getIt.registerFactory<HomeBloc>(() => HomeBloc(getIt()));
 }
