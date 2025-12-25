@@ -1,7 +1,7 @@
 import 'package:shop/data/datasources/remote/api_service.dart';
 import 'package:shop/data/models/banner_model.dart';
 import 'package:shop/data/models/repository_helper.dart';
-import 'package:shop/domain/entities/banner.dart';
+import 'package:shop/domain/entities/banner_data.dart';
 import 'package:shop/domain/entities/data_result.dart';
 import 'package:shop/domain/repositories/home_repository.dart';
 
@@ -11,8 +11,8 @@ class HomeRepositoryImpl extends HomeRepository with RepositoryHelper {
   HomeRepositoryImpl(this._apiService);
 
   @override
-  Future<DataResult<List<Banner>>> getBanner() async {
-    return mapToResult<List<BannerModel>, List<Banner>>(
+  Future<DataResult<List<BannerData>>> getBanner() async {
+    return mapToResult<List<BannerModel>, List<BannerData>>(
       // 1. 调接口
       call: () => _apiService.getBanner(),
 

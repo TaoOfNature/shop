@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shop/domain/entities/banner.dart';
+import 'package:shop/domain/entities/banner_data.dart';
 
 part 'banner_model.g.dart';
 part 'banner_model.freezed.dart';
@@ -16,5 +16,5 @@ sealed class BannerModel with _$BannerModel {
 }
 
 extension BannerModelX on BannerModel {
-  Banner toEntity() => Banner(shopId: shopId, imageUrl: imageUrl);
+  BannerData toEntity() => BannerData(shopId: shopId, imageUrl: imageUrl);
 }

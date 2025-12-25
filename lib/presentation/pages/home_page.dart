@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:shop/domain/entities/banner_data.dart';
 import 'package:shop/presentation/bloc/home/home_bloc.dart';
 import 'package:shop/presentation/bloc/home/home_event.dart';
 import 'package:shop/presentation/bloc/home/home_state.dart';
@@ -26,10 +27,16 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: BlocConsumer<HomeBloc, HomeState>(
         builder: (context, state) {
-          return _buildWidget();
+          final list = state.maybeWhen(
+            success: (bannerList) => bannerList,
+            failure: (msg, bannerList) => bannerList,
+            orElse: () => <BannerData>[],
+          );
+          return _buildWidget(list);
         },
         listener: (BuildContext context, HomeState state) {
           state.maybeWhen(
@@ -38,7 +45,7 @@ class _HomePageState extends State<HomePage>
                 context,
               ).showSnackBar(const SnackBar(content: Text("get success ")));
             },
-            failure: (message) {
+            failure: (message, list) {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(message)));
@@ -50,7 +57,7 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  SafeArea _buildWidget() {
+  SafeArea _buildWidget(List<BannerData> list) {
     return SafeArea(
       child: CustomScrollView(
         slivers: [
@@ -60,8 +67,8 @@ class _HomePageState extends State<HomePage>
           // SliverPersistentHeader(delegate: null),
           SliverPadding(
             padding: EdgeInsets.all(10),
-            sliver: MasonryGridView.count(
-              crossAxisCount: 10,
+            sliver: SliverMasonryGrid.count(
+              crossAxisCount: list.length,
               itemBuilder: (BuildContext context, int index) {
                 return Placeholder();
               },
