@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:shop/data/models/banner_model.dart';
 import 'package:shop/data/models/base_response.dart';
+import 'package:shop/data/models/category_model.dart';
+import 'package:shop/data/models/product_model.dart';
 import 'package:shop/data/models/user_model.dart';
 
 part 'api_service.g.dart';
@@ -18,4 +20,10 @@ abstract class ApiService {
 
   @GET("/banner")
   Future<BaseResponse<List<BannerModel>>> getBanner();
+
+  @GET("/category")
+  Future<BaseResponse<List<CategoryModel>>> getCategory();
+
+  @GET("/product")
+  Future<BaseResponse<List<ProductModel>>> getProduct();
 }
